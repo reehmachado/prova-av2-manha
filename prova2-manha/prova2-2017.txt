@@ -1,0 +1,105 @@
+Unilasalle-RJ - AV2
+Aluno: (Coloque aqui o seu nome e matricula)
+Prova Av2 de Laboratorio de Sistemas Operacionais
+Professor: Alex Salgado
+1o. Semestre de 2017   Turno: ????
+--------------------------------------------------
+1-Faça um script shell que:
+- Pergunte por um nome e crie uma pasta e um arquivo.txt com o mesmo nome inserido.
+
+
+
+2-Quantos erros tem no script abaixo? Qual(is) são eles?
+case "$file" in
+    *.txt}
+        echo "É um arquivo de texto."
+        cat "$file"
+        
+    *.gif|*.jpg|*.png}
+        echo "É uma figura."
+        xloadimage "$file"
+        
+    *}
+        echo "Não sei que arquivo é esse."
+        
+esac
+
+
+
+
+
+3-Usando estrutura de repetição, faça um script para exibir todos os arquivos
+da pasta atual com tamanho maior que 500kb.
+
+4-Usando estrutura de repetição, faça um script para calcular e exibir quantas
+pastas e quantos arquivos tem na pasta atual.
+
+5-Faça um script que leia um numero IP e retorna se endereço responde ou não ao 
+comando ping.
+Além disso, se for digitado um ip vazio, o script deve informar ao usuario.
+
+Respostas aqui:
+1-
+#!/bin/bash
+
+
+
+echo "informe o nome desejado"
+read nome
+
+mkdir $nome
+#acessar a pasta
+cd $nome
+#criar arquivos
+touch $nome'.txt'
+
+2-
+são 3 erros.
+Os erros sao:
+a- $file eh passado como text
+b- a sintaxe nos cases esta errada. Ao inves de '}' deve-se usar ')'. Alem disso falta ';;' ao final de cada case
+
+
+
+3-
+4-
+  GNU nano 2.2.6             Arquivo: qtd2.sh                                   
+
+#!/bin/bash
+
+for j in $(ls /home/aluno/prova-av2-manha/prova2-manha)
+do
+
+        echo "$j"
+
+        if ! [ $DIR ]
+        then
+                DIR='.'
+        fi
+
+
+NUMDIR=$(ls -lR "$DIR" | grep '^d' | wc -l)
+NUMARQ=$(ls -lR "$DIR" | grep '^-' | wc -l)
+
+
+done
+
+
+5-
+#!/bin/bash
+
+echo "Infome  o ip a ser verificado"
+read ip
+
+if [ ! -z $ip ];then 
+        ping -c 1 $ip
+
+        if [ $? -eq 0 ];then
+                echo "Maquina responde"
+        else
+                echo "maquina nao responde"
+        fi
+else
+        echo "ip vazio"
+fi
+
